@@ -30,6 +30,7 @@ jobs:
       - name: Test the Docker image
         run: docker run -d ${{ env.IMAGE_NAME }} . --rm
   deploy:
+    needs: [build, test]
     name: Deploy
     runs-on: ubuntu-latest
     steps:
