@@ -13,17 +13,19 @@ env:
 
 jobs:
   build:
+    name: Build Docker image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker build -t ${{ env.IMAGE_NAME }} . --no-cache --force-rm
+        run: docker build -t ${{ env.IMAGE_NAME }} . --no-cache
   test:
+    name: Test Docker image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Test the Docker image
-        run: docker run -d ${{ env.IMAGE_NAME }} --rm
+        run: docker run -d ${{ env.IMAGE_NAME }} . --rm
   deploy:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
