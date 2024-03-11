@@ -4,8 +4,6 @@ LABEL maintainer="Bert Cammayo <ngcammayo@gmail.com>"
 RUN apt-get update \
   && apt-get install -y --no-install-recommends build-essential \
   && apt-get clean \
-  && python3 -m pip install --user pipx \
-  && python3 -m pipx ensurepath \
-  && pipx install poetry \
+  && curl -sSL https://install.python-poetry.org | python3 - --version 1.8.2 \
   && export PATH="/root/.local/bin:$PATH" \
   && npm install -g serverless

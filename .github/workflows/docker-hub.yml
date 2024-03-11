@@ -17,13 +17,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker-compose build --no-cache --force-rm
+        run: docker build -t ${{ env.IMAGE_NAME }} . --no-cache --force-rm
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Test the Docker image
-        run: docker-compose up -d
+        run: docker run -d ${{ env.IMAGE_NAME }} --rm
   deploy:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
